@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from fastapi import FastAPI
@@ -14,7 +15,9 @@ class Post(BaseModel):
 @app.post("/twbuf")
 def append_twbuf(post: Post):
     with open("buf.txt", "ta") as f:
-        f.write(post.text)
+        text = post.text.replace('\n', ' ')
+        text = f"{text} [{datetime.datetime.now()}]"
+        f.write(text)
         f.write("\n")
         logger.info("Append %s", post)
         return {"status": "OK"}

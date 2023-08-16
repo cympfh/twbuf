@@ -5,3 +5,6 @@ serve:
 
 unleash:
 	bash ./unleash.sh buf.txt
+
+unleasing:
+	bash ./unleashing.sh
